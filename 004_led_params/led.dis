@@ -1,0 +1,96 @@
+
+led.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e3a0da01 	mov	sp, #4096	; 0x1000
+   4:	e3a00004 	mov	r0, #4	; 0x4
+   8:	eb000013 	bl	5c <led_on>
+   c:	e59f0014 	ldr	r0, [pc, #20]	; 28 <.text+0x28>
+  10:	eb000005 	bl	2c <delay>
+  14:	e3a00005 	mov	r0, #5	; 0x5
+  18:	eb00000f 	bl	5c <led_on>
+  1c:	e59f0004 	ldr	r0, [pc, #4]	; 28 <.text+0x28>
+  20:	eb000001 	bl	2c <delay>
+
+00000024 <halt>:
+  24:	eafffffe 	b	24 <halt>
+  28:	000186a0 	andeq	r8, r1, r0, lsr #13
+
+0000002c <delay>:
+  2c:	e1a0c00d 	mov	ip, sp
+  30:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  34:	e24cb004 	sub	fp, ip, #4	; 0x4
+  38:	e24dd004 	sub	sp, sp, #4	; 0x4
+  3c:	e50b0010 	str	r0, [fp, #-16]
+  40:	e51b3010 	ldr	r3, [fp, #-16]
+  44:	e2433001 	sub	r3, r3, #1	; 0x1
+  48:	e50b3010 	str	r3, [fp, #-16]
+  4c:	e3730001 	cmn	r3, #1	; 0x1
+  50:	0a000000 	beq	58 <delay+0x2c>
+  54:	eafffff9 	b	40 <delay+0x14>
+  58:	e89da808 	ldmia	sp, {r3, fp, sp, pc}
+
+0000005c <led_on>:
+  5c:	e1a0c00d 	mov	ip, sp
+  60:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  64:	e24cb004 	sub	fp, ip, #4	; 0x4
+  68:	e24dd00c 	sub	sp, sp, #12	; 0xc
+  6c:	e50b0010 	str	r0, [fp, #-16]
+  70:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  74:	e2833050 	add	r3, r3, #80	; 0x50
+  78:	e50b3014 	str	r3, [fp, #-20]
+  7c:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  80:	e2833054 	add	r3, r3, #84	; 0x54
+  84:	e50b3018 	str	r3, [fp, #-24]
+  88:	e51b3010 	ldr	r3, [fp, #-16]
+  8c:	e3530004 	cmp	r3, #4	; 0x4
+  90:	1a000003 	bne	a4 <led_on+0x48>
+  94:	e51b2014 	ldr	r2, [fp, #-20]
+  98:	e3a03c01 	mov	r3, #256	; 0x100
+  9c:	e5823000 	str	r3, [r2]
+  a0:	ea000005 	b	bc <led_on+0x60>
+  a4:	e51b3010 	ldr	r3, [fp, #-16]
+  a8:	e3530005 	cmp	r3, #5	; 0x5
+  ac:	1a000002 	bne	bc <led_on+0x60>
+  b0:	e51b2014 	ldr	r2, [fp, #-20]
+  b4:	e3a03b01 	mov	r3, #1024	; 0x400
+  b8:	e5823000 	str	r3, [r2]
+  bc:	e51b3018 	ldr	r3, [fp, #-24]
+  c0:	e3a02000 	mov	r2, #0	; 0x0
+  c4:	e5832000 	str	r2, [r3]
+  c8:	e1a00003 	mov	r0, r3
+  cc:	e24bd00c 	sub	sp, fp, #12	; 0xc
+  d0:	e89da800 	ldmia	sp, {fp, sp, pc}
+
+000000d4 <main>:
+  d4:	e1a0c00d 	mov	ip, sp
+  d8:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  dc:	e24cb004 	sub	fp, ip, #4	; 0x4
+  e0:	e24dd008 	sub	sp, sp, #8	; 0x8
+  e4:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  e8:	e2833050 	add	r3, r3, #80	; 0x50
+  ec:	e50b3010 	str	r3, [fp, #-16]
+  f0:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  f4:	e2833054 	add	r3, r3, #84	; 0x54
+  f8:	e50b3014 	str	r3, [fp, #-20]
+  fc:	e51b2010 	ldr	r2, [fp, #-16]
+ 100:	e3a03c01 	mov	r3, #256	; 0x100
+ 104:	e5823000 	str	r3, [r2]
+ 108:	e51b2014 	ldr	r2, [fp, #-20]
+ 10c:	e3a03000 	mov	r3, #0	; 0x0
+ 110:	e5823000 	str	r3, [r2]
+ 114:	e3a03000 	mov	r3, #0	; 0x0
+ 118:	e1a00003 	mov	r0, r3
+ 11c:	e24bd00c 	sub	sp, fp, #12	; 0xc
+ 120:	e89da800 	ldmia	sp, {fp, sp, pc}
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	cmpmi	r3, #0	; 0x0
+   4:	4728203a 	undefined
+   8:	2029554e 	eorcs	r5, r9, lr, asr #10
+   c:	2e342e33 	mrccs	14, 1, r2, cr4, cr3, {1}
+  10:	Address 0x10 is out of bounds.
+
