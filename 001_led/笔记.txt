@@ -1,0 +1,3 @@
+pc寄存器：program counter 
+lr寄存器：link register
+立即数12位（高四位，底八位）=immediate_8循环右移（2Xrotate）位（32位中移动）
