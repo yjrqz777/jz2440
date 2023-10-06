@@ -16,10 +16,10 @@ int main()
     {
         c = getchar();
 
-        if(c=="\r")
-            putchar("\n");
-        if(c=="\n")
-        putchar("\r");
+        if(c=='\r')
+            putchar('\n');
+        if(c=='\n')
+        putchar('\r');
         putchar(c);
 
     }

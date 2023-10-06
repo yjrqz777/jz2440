@@ -215,23 +215,33 @@ Disassembly of section .text:
  300:	e24cb004 	sub	fp, ip, #4	; 0x4
  304:	e24dd004 	sub	sp, sp, #4	; 0x4
  308:	ebffffa2 	bl	198 <uart0_init>
- 30c:	e59f001c 	ldr	r0, [pc, #28]	; 330 <.text+0x330>
+ 30c:	e59f0044 	ldr	r0, [pc, #68]	; 358 <.text+0x358>
  310:	ebffffe5 	bl	2ac <puts>
  314:	ebffffd4 	bl	26c <getchar>
  318:	e1a03000 	mov	r3, r0
  31c:	e54b300d 	strb	r3, [fp, #-13]
  320:	e55b300d 	ldrb	r3, [fp, #-13]
- 324:	e1a00003 	mov	r0, r3
- 328:	ebffffbd 	bl	224 <putchar>
- 32c:	eafffff8 	b	314 <main+0x1c>
- 330:	00000334 	andeq	r0, r0, r4, lsr r3
+ 324:	e353000d 	cmp	r3, #13	; 0xd
+ 328:	1a000001 	bne	334 <main+0x3c>
+ 32c:	e3a0000a 	mov	r0, #10	; 0xa
+ 330:	ebffffbb 	bl	224 <putchar>
+ 334:	e55b300d 	ldrb	r3, [fp, #-13]
+ 338:	e353000a 	cmp	r3, #10	; 0xa
+ 33c:	1a000001 	bne	348 <main+0x50>
+ 340:	e3a0000d 	mov	r0, #13	; 0xd
+ 344:	ebffffb6 	bl	224 <putchar>
+ 348:	e55b300d 	ldrb	r3, [fp, #-13]
+ 34c:	e1a00003 	mov	r0, r3
+ 350:	ebffffb3 	bl	224 <putchar>
+ 354:	eaffffee 	b	314 <main+0x1c>
+ 358:	0000035c 	andeq	r0, r0, ip, asr r3
 Disassembly of section .rodata:
 
-00000334 <.rodata>:
- 334:	6c6c6548 	cfstr64vs	mvdx6, [ip], #-288
- 338:	77202c6f 	strvc	r2, [r0, -pc, ror #24]!
- 33c:	646c726f 	strvsbt	r7, [ip], #-623
- 340:	000d0a21 	andeq	r0, sp, r1, lsr #20
+0000035c <.rodata>:
+ 35c:	6c6c6548 	cfstr64vs	mvdx6, [ip], #-288
+ 360:	77202c6f 	strvc	r2, [r0, -pc, ror #24]!
+ 364:	646c726f 	strvsbt	r7, [ip], #-623
+ 368:	000d0a21 	andeq	r0, sp, r1, lsr #20
 Disassembly of section .comment:
 
 00000000 <.comment>:
