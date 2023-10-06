@@ -15,6 +15,11 @@ int main()
     while (1)
     {
         c = getchar();
+
+        if(c=="\r")
+            putchar("\n");
+        if(c=="\n")
+        putchar("\r");
         putchar(c);
 
     }
