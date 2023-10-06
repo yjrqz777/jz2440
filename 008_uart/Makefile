@@ -1,5 +1,5 @@
 all:
-	arm-linux-gcc -c -o led.o led_on.c
+	arm-linux-gcc -c -o led.o led.c
 	arm-linux-gcc -c -o uart.o uart.c
 	arm-linux-gcc -c -o main.o main.c
 	arm-linux-gcc -c -o main.o main.c
