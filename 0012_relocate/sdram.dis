@@ -423,38 +423,41 @@ Disassembly of section .text:
  618:	e1a0c00d 	mov	ip, sp
  61c:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
  620:	e24cb004 	sub	fp, ip, #4	; 0x4
- 624:	e24dd008 	sub	sp, sp, #8	; 0x8
- 628:	e3a03203 	mov	r3, #805306368	; 0x30000000
- 62c:	e50b3014 	str	r3, [fp, #-20]
- 630:	ebffff42 	bl	340 <uart0_init>
- 634:	ebfffe9a 	bl	a4 <led_init>
- 638:	ebffffa3 	bl	4cc <sdram_init>
- 63c:	ebffffc5 	bl	558 <sdram_test>
- 640:	e1a03000 	mov	r3, r0
- 644:	e3530000 	cmp	r3, #0	; 0x0
- 648:	1a000001 	bne	654 <main+0x3c>
- 64c:	ebfffec1 	bl	158 <led_test>
- 650:	ea000001 	b	65c <main+0x44>
- 654:	e59f0010 	ldr	r0, [pc, #16]	; 66c <.text+0x66c>
- 658:	ebffff7d 	bl	454 <puts>
- 65c:	e59f000c 	ldr	r0, [pc, #12]	; 670 <.text+0x670>
- 660:	ebffff7b 	bl	454 <puts>
- 664:	ebfffebb 	bl	158 <led_test>
- 668:	eafffffd 	b	664 <main+0x4c>
- 66c:	00000674 	andeq	r0, r0, r4, ror r6
- 670:	00000688 	andeq	r0, r0, r8, lsl #13
+ 624:	ebffff45 	bl	340 <uart0_init>
+ 628:	e59f0034 	ldr	r0, [pc, #52]	; 664 <.text+0x664>
+ 62c:	ebffff88 	bl	454 <puts>
+ 630:	e59f3030 	ldr	r3, [pc, #48]	; 668 <.text+0x668>
+ 634:	e5d33000 	ldrb	r3, [r3]
+ 638:	e1a00003 	mov	r0, r3
+ 63c:	ebffff62 	bl	3cc <putchar>
+ 640:	e59f2020 	ldr	r2, [pc, #32]	; 668 <.text+0x668>
+ 644:	e59f301c 	ldr	r3, [pc, #28]	; 668 <.text+0x668>
+ 648:	e5d33000 	ldrb	r3, [r3]
+ 64c:	e2833001 	add	r3, r3, #1	; 0x1
+ 650:	e5c23000 	strb	r3, [r2]
+ 654:	e3a0093d 	mov	r0, #999424	; 0xf4000
+ 658:	e2800d09 	add	r0, r0, #576	; 0x240
+ 65c:	ebfffe84 	bl	74 <delay>
+ 660:	eafffff2 	b	630 <main+0x18>
+ 664:	0000066c 	andeq	r0, r0, ip, ror #12
+ 668:	00000800 	andeq	r0, r0, r0, lsl #16
+Disassembly of section .data:
+
+00000800 <__data_start>:
+ 800:	Address 0x800 is out of bounds.
+
 Disassembly of section .rodata:
 
-00000674 <.rodata>:
- 674:	41524453 	cmpmi	r2, r3, asr r4
- 678:	6574204d 	ldrvsb	r2, [r4, #-77]!
- 67c:	66207473 	undefined
- 680:	216c6961 	cmncs	ip, r1, ror #18
- 684:	00000d0a 	andeq	r0, r0, sl, lsl #26
- 688:	6c6c6548 	cfstr64vs	mvdx6, [ip], #-288
- 68c:	77202c6f 	strvc	r2, [r0, -pc, ror #24]!
- 690:	646c726f 	strvsbt	r7, [ip], #-623
- 694:	000d0a21 	andeq	r0, sp, r1, lsr #20
+0000066c <.rodata>:
+ 66c:	6c6c6548 	cfstr64vs	mvdx6, [ip], #-288
+ 670:	77202c6f 	strvc	r2, [r0, -pc, ror #24]!
+ 674:	646c726f 	strvsbt	r7, [ip], #-623
+ 678:	000d0a21 	andeq	r0, sp, r1, lsr #20
+Disassembly of section .bss:
+
+00000801 <.bss>:
+ 801:	Address 0x801 is out of bounds.
+
 Disassembly of section .comment:
 
 00000000 <.comment>:

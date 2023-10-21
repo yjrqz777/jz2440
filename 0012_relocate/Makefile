@@ -5,7 +5,7 @@ all:
 	arm-linux-gcc -c -o init.o init.c
 	arm-linux-gcc -c -o start.o start.S
 
-	arm-linux-ld -Ttext 0 start.o led.o uart.o init.o main.o -o sdram.elf 
+	arm-linux-ld -Ttext 0 -Tdata 0x800 start.o led.o uart.o init.o main.o -o sdram.elf 
 	arm-linux-objcopy -O binary -S sdram.elf sdram.bin
 	arm-linux-objdump -D sdram.elf > sdram.dis
 
