@@ -1,8 +1,31 @@
+
 .text
 .global _start
-.code 32
 
 _start:
+	b reset  /* vector 0 : reset */
+	b do_und /* vector 4 : und */
+
+
+do_und:
+    //保存，处理，恢复,sp未设置
+    ldr sp, =0x34000000
+    stmdb sp!, {r0-r12, lr}
+
+    mrs r0, cpsr
+    ldr r1, =und_string
+    bl printException
+
+
+    //恢复
+    ldmia sp!, {r0-r12, pc}^
+
+und_string: 
+	.string "undefined instruction exception"
+	
+
+
+reset:
     /*关闭看门狗*/
 
     ldr r0, =0x53000000
@@ -38,15 +61,7 @@ _start:
     moveq sp, #4096 /*nand 启动*/
     streq r0, [r1] /*恢复原来的值*/
 
-    adr r0, thumb_func
-    add r0, r0, #1
-    bx r0
 
-
-
-
-.code 16
-thumb_func:
     bl sdram_init
 
     //重定位text data rodata
@@ -57,10 +72,16 @@ thumb_func:
 
     bl clean_bss
 
-    //bl main     //使用BL相对跳转，程序任然在nor/sram执行
+    bl uart0_init
 
-    ldr r0, =main   //使用LDR绝对跳转，程序在sdram执行
-    mov pc, r0
+    bl print1
+und_code:
+    .word 0xdeadc0de
+
+    bl print2
+
+    //bl main     //使用BL相对跳转，程序任然在nor/sram执行
+    ldr pc, =main   //使用LDR绝对跳转，程序在sdram执行
     
 halt:
     b halt
