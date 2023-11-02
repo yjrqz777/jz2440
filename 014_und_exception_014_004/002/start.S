@@ -4,7 +4,7 @@
 
 _start:
 	b reset  /* vector 0 : reset */
-    ldr pc, =und_addr
+    ldr pc, =und_addr //4
 
 und_addr:
     .word do_und
