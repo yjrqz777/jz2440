@@ -76,7 +76,7 @@ void s3c2440_lcd_controller_init(p_lcd_params plcdparams)
 	 * [0]  : HWSWP
 	 */
 
-	pixelplace = plcdparams->bpp == 24 ? (0) : \
+	pixelplace = plcdparams->bpp == 32 ? (0) : \
 	             plcdparams->bpp == 16 ? (1) : \
 	             (1<<1);  /* 8bpp */
 	LCDCON5 = (plcdparams->pins_pol.vclk<<10) |\

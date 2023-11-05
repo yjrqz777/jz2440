@@ -11,6 +11,7 @@ void lcd_test(void)
     int bpp;
     int x, y;
     unsigned short *p;
+    unsigned int *p2;
     lcd_init();
     lcd_enable();
 
@@ -56,4 +57,44 @@ void lcd_test(void)
         while (i--);
         p = (unsigned short *)fb_base;
     }
+
+while(bpp == 32)
+    {
+        p2 = (unsigned int *)fb_base;
+        for(y=0; y<yres; y++)
+        {
+            for(x=0; x<xres; x++)
+            {
+
+                *p2++ = 0xff0000;
+ 
+            }
+        }
+        p2 = (unsigned int *)fb_base;
+        i=100000;
+        while (--i);
+
+        
+        for(y=0; y<yres; y++)
+        {
+            for(x=0; x<xres; x++)
+            {
+                *p2++ = 0xff;
+            }
+        }
+        p2 = (unsigned int *)fb_base;
+                i=100000;
+        while (i--);
+        for(y=0; y<yres; y++)
+        {
+            for(x=0; x<xres; x++)
+            {
+                *p2++ = 0x00ff00;
+            }
+        }
+                i=100000;
+        while (i--);
+    }
+
+
 }
