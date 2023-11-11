@@ -1,7 +1,8 @@
 
 #include "./i2c_controller.h"
 
-#define AT24CXX_ADDR	0x78
+#define AT24CXX_ADDR	0x3c
+
 
 int at24cxx_write(unsigned int addr, unsigned char *data, int len)
 {
@@ -59,26 +60,26 @@ int at24cxx_read(unsigned int addr, unsigned char *data, int len)
 }
 
 
-int at24cxx_cmd(unsigned int cmd)
-{	
+// int at24cxx_cmd(unsigned char *cmd)
+// {	
 	
-	i2c_msg msg[2];
-	int err;
-	/* 构造i2c_msg */
-	msg[0].addr = AT24CXX_ADDR;
-	msg[0].flags = 0;
-	msg[0].len = 8;
-	msg[0].buf = cmd;
-	msg[0].err = 0;
-	msg[0].cnt_transferred = -1;
-	/* 调用i2c_transfer */
-	err = i2c_transfer(&msg,1);
-	printf("i2c_tcmd==%d----1------\n\r",err);
-	if(err)
-		return err;
-	printf("i2c_tcmd==%d-----2-----\n\r",err);
-	return 0;
-}
+// 	i2c_msg msg[1];
+// 	int err;
+// 	/* 构造i2c_msg */
+// 	msg[0].addr = AT24CXX_ADDR;
+// 	msg[0].flags = 0;
+// 	msg[0].len = 8;
+// 	msg[0].buf = &cmd;
+// 	msg[0].err = 0;
+// 	msg[0].cnt_transferred = -1;
+// 	/* 调用i2c_transfer */
+// 	err = i2c_transfer(&msg,1);
+// 	printf("i2c_tcmd==%d----1------\n\r",err);
+// 	if(err)
+// 		return err;
+// 	printf("i2c_tcmd==%d-----2-----\n\r",err);
+// 	return 0;
+// }
 
 
 // int at24cxx_read(unsigned int addr, unsigned char *data, int len)

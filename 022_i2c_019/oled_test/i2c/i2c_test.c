@@ -1,5 +1,5 @@
 
-
+#include "oled.h"
 #include "at24cxx.h"
 
 void do_write_at24cxx(void)
@@ -90,9 +90,19 @@ void do_read_at24cxx(void)
 
 void test(void)
 {
-	int err;
-	err = at24cxx_cmd(0xaf);
-	printf("\n\r");
+
+
+	oled_test();
+	// int err=9999;
+	// int addr;
+	// OLED_Init();
+
+	
+	// printf("Enter the address to read: ");
+	// addr = get_uint();
+	// OLED_Clear(addr);
+	// // err = at24cxx_cmd("0xaf");
+	// printf("INIT = ---------%d-------------------\n\r", err);
 }
 
 void i2c_test(void)
@@ -107,6 +117,7 @@ void i2c_test(void)
 		/* 打印菜单, 供我们选择测试内容 */
 		printf("[w] Write at24cxx\n\r");
 		printf("[r] Read at24cxx\n\r");
+		printf("[V] oled_test\n\r");
 		printf("[q] quit\n\r");
 		printf("Enter selection: ");
 
@@ -134,9 +145,9 @@ void i2c_test(void)
 				do_read_at24cxx();
 				break;
 
-			case 'c':
-			case 'C':
-				do_read_at24cxx();
+			case 'v':
+			case 'V':
+				test();
 				break;
 			default:
 				break;

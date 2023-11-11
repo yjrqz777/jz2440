@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "string_utils.h": "c"
+        "string_utils.h": "c",
+        "at24cxx.h": "c"
     }
 }
